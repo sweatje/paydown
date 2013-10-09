@@ -7,13 +7,25 @@ require_once 'model/Hash.php';
 * @backupStaticAttributes disabled
 */
 class TestHashClass extends PHPUnit_Framework_TestCase {
-        function testGetReturnsNullForUnsetKey() {
-		$hash = new Hash;
-                $this->assertEquals(null, $hash->get('unset key'));
+	protected $hash;
+        function setup() {
+		$this->hash = new Hash;
+	}
+	function testGetReturnsNullForUnsetKey() {
+                $this->assertEquals(null, $this->hash->get('unset key'));
         }
 	function testSetStoresValueWithKeyForGetRetrieval() {
-		$hash = new Hash;
-		$hash->set('key','value');
-		$this->assertEquals('value', $hash->get('key'));
+		$this->hash->set('key','value');
+		$this->assertEquals('value', $this->hash->get('key'));
+	}
+	function testHashTreatsAttributeSetSameAsGetSetMethods() {
+		$this->hash->key = 'value';
+		$this->assertEquals('value', $this->hash->get('key'));
+		$this->hash->set('key2','value2');
+		$this->assertEquals('value2', $this->hash->key2);
+	}
+	function testHashAllowsAccessAsAnArray() {
+		$this->hash['key'] = 'value';
+		$this->assertEquals('value', $this->hash['key']);
 	}
 }
