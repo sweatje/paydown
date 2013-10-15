@@ -2,9 +2,6 @@ Define Plan model (id, name, start date)
 	collections (income, liability, asset)
 	Define DDL for plan table
 time - all months from first day of month
-hash
-	respond to properties as virtual attributes
-	respond with array syntax
 model
 	projection (array of months, simulate transactions and interest accrual)
 	method project (month, payment) return not applied payment
@@ -20,3 +17,6 @@ event?
 
 done
 install phpunit on rackspace server
+hash
+	respond to properties as virtual attributes
+	respond with array syntax
