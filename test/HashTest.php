@@ -28,4 +28,8 @@ class TestHashClass extends PHPUnit_Framework_TestCase {
 		$this->hash['key'] = 'value';
 		$this->assertEquals('value', $this->hash['key']);
 	}
+	function testHashUsesContructorToPopulate() {
+		$hash = new Hash(array('foo' => 'bar'));
+		$this->assertEquals('bar',$hash->foo);
+	}
 }

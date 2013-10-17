@@ -2,6 +2,9 @@
 
 class Hash implements ArrayAccess {
 	protected $store = array();
+	function __construct($init = array()) {
+		foreach($init as $key => $val) $this->set($key, $val);
+	}
 	function get($key) {
 		if (array_key_exists($key,$this->store))
 			return $this->store[$key];
