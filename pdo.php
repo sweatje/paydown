@@ -2,8 +2,8 @@
 require_once 'model/Hash.php';
 
 function db_factory() {
-	$dsn = (file_exists('speed.prod.sqlite3')) ?
-		'sqlite:speed.prod.sqlite3' : 'sqlite:speed.sqlite3';
+	$dsn = (file_exists('paydown.prod.sqlite3')) ?
+		'sqlite:paydown.prod.sqlite3' : 'sqlite:paydown.sqlite3';
 	$db = new PDO($dsn);
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
