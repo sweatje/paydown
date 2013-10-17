@@ -13,4 +13,4 @@ create trigger dplantr after update on dplan begin
         update dplan set updated = datetime('now','localtime') where id = new.id;
         end;
 
-
+insert into dplan (name) values ('Jason''s Test Plan');
