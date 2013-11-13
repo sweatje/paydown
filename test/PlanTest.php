@@ -27,5 +27,12 @@ class TestPlanClass extends PHPUnit_Framework_TestCase {
 		$plan = $this->plan->getById(1);
 		$this->assertEquals('Jason\'s Test Plan',$plan->name);
 	}
+	function testAllReturnsArrayOfHashs() {
+		$plans = $this->plan->all();
+		$this->assertTrue(is_array($plans));
+		$this->assertCount(1,$plans);
+		$this->assertInstanceOf('hash',$plans[0]);
+		$this->assertEquals('Jason\'s Test Plan',$plans[0]['name']);
+	}
 }
 
