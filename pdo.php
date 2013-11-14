@@ -42,5 +42,12 @@ class Model {
 		foreach( $this->exec($sql,$bind)->fetchAll() as $row ) $ret[] = new Hash($row);
 		return $ret;
 	}
+	function getById($id) {
+		$sql = 'select * from '.static::$table.' where id = :id';
+		return $this->getRow($sql,array('id'=>$id));
+	}
+	function All() {
+		return $this->getAll('select * from '.static::$table);
+	}
 }
 
