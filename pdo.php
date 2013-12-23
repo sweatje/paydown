@@ -49,5 +49,10 @@ class Model {
 	function All() {
 		return $this->getAll('select * from '.static::$table);
 	}
+	function getByPlan($plan) {
+		return $this->getAll(
+			'select * from '.static::$table.' where plan_id = :plan'
+			,array('plan'=>$plan));
+	}
 }
 

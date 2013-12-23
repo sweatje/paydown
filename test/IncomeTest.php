@@ -12,6 +12,7 @@ class TestIncomeClass extends PHPUnit_Framework_TestCase {
 	protected $income;
 	function setup() {
 		$this->db = new PDO('sqlite:'.$this->dbname);
+		`sqlite3 $this->dbname < sql/plan_ddl.sql`;
 		`sqlite3 $this->dbname < sql/income_ddl.sql`;
 		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -29,6 +30,13 @@ class TestIncomeClass extends PHPUnit_Framework_TestCase {
 	}
 	function testAllReturnsArrayOfHashs() {
 		$incomes = $this->income->all();
+		$this->assertTrue(is_array($incomes));
+		$this->assertCount(1,$incomes);
+		$this->assertInstanceOf('hash',$incomes[0]);
+		$this->assertEquals('Job',$incomes[0]['name']);
+	}
+	function testGetByPlanReturnsArrayOfHashs() {
+		$incomes = $this->income->getByPlan(1);
 		$this->assertTrue(is_array($incomes));
 		$this->assertCount(1,$incomes);
 		$this->assertInstanceOf('hash',$incomes[0]);

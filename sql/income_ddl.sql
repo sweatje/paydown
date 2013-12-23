@@ -1,10 +1,12 @@
 CREATE TABLE income (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
+plan_id INTEGER NOT NULL,
 name TEXT,
 start_dt TEXT,
 amt REAL,
 created TEXT DEFAULT CURRENT_TIMESTAMP,
-updated TEXT DEFAULT CURRENT_TIMESTAMP
+updated TEXT DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY(plan_id) REFERENCES dplan(id)
 );
 create index incomei1 on income (id);
 create trigger incometri after insert on income begin
@@ -14,7 +16,7 @@ create trigger incometr after update on income begin
         update income set updated = datetime('now','localtime') where id = new.id;
         end;
 
-insert into income (name, amt) values ('Job', 8000);
+insert into income (plan_id, name, amt) values (1, 'Job', 8000);
 
 
 
