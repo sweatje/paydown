@@ -16,6 +16,12 @@ class TestIncomeClass extends PHPUnit_Framework_TestCase {
 		`sqlite3 $this->dbname < sql/income_ddl.sql`;
 		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+		$this->db->exec("insert into dplan (name) values ('Test Plan')");
+		$this->db->exec("insert into income (plan_id, name, amt) values (1, 'Job', 8000)");
+		/*
+                $this->db->exec("insert into income_adj (income_id, name, start_dt, amt) 
+			values (1,'Test Raise', datetime('now','localtime','start of month','+2 months'), 250)"); 
+		*/
 		$this->income = new Income($this->db);
 	}
 	function teardown() {

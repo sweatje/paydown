@@ -16,10 +16,6 @@ create trigger incometr after update on income begin
         update income set updated = datetime('now','localtime') where id = new.id;
         end;
 
-insert into income (plan_id, name, amt) values (1, 'Job', 8000);
-
-
-
 CREATE TABLE income_adj (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 income_id INTEGER NOT NULL,
@@ -39,5 +35,3 @@ create trigger incomet_adjri after insert on income_adj begin
 create trigger income_adjtr after update on income_adj begin
         update income_adj set updated = datetime('now','localtime') where id = new.id;
 	end;
-
-insert into income_adj (income_id, name, start_dt, amt) values (1,'Test Raise', datetime('now','localtime','start of month','+2 months'), 250); 
