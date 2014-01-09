@@ -1,8 +1,8 @@
+start web page
+	- list available plans
+	- create new plan
 Plan - add projected timeframe in months?
-Income model (id, plan_id, name, amount) income source repeatable monthly - e.g. job
-Income adj (id, plan_id, name, amount, start_dt) e.g. raise
 Expense model (id, plan_id, name, amount) monthly amount not available for debt service e.g. standard living expenses
-Debt model (id, plan_id, priority, name, interest rate) - credit card, loan
 Debt amount (debt_id, dt, amount, projected)
 Asset model (id, plan_id, priority, name, interest rate) - bank account, brokerage account, house, car, etc.
 Asset value (asset_id, dt, amount, projected)
@@ -22,9 +22,12 @@ event?
 
 
 done
+Debt model (id, plan_id, priority, name, interest rate) - credit card, loan
 install phpunit on rackspace server
 hash
 	respond to properties as virtual attributes
 	respond with array syntax
 Define Plan model (id, name, start date)
 Define DDL for plan table
+Income model (id, plan_id, name, amount) income source repeatable monthly - e.g. job
+Income adj (id, plan_id, name, amount, start_dt) e.g. raise
