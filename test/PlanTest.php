@@ -15,6 +15,7 @@ class TestPlanClass extends PHPUnit_Framework_TestCase {
 		`sqlite3 $this->dbname < sql/plan_ddl.sql`;
 		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+		$this->db->exec("insert into dplan (name) values ('Test Plan')");
 		$this->plan = new Plan($this->db);
 	}
 	function teardown() {
@@ -25,14 +26,14 @@ class TestPlanClass extends PHPUnit_Framework_TestCase {
 	}
 	function testGetByIdReturnsHash() {
 		$plan = $this->plan->getById(1);
-		$this->assertEquals('Jason\'s Test Plan',$plan->name);
+		$this->assertEquals('Test Plan',$plan->name);
 	}
 	function testAllReturnsArrayOfHashs() {
 		$plans = $this->plan->all();
 		$this->assertTrue(is_array($plans));
 		$this->assertCount(1,$plans);
 		$this->assertInstanceOf('hash',$plans[0]);
-		$this->assertEquals('Jason\'s Test Plan',$plans[0]['name']);
+		$this->assertEquals('Test Plan',$plans[0]['name']);
 	}
 }
 
