@@ -19,8 +19,6 @@ create trigger debttr after update on debt begin
         update debt set updated = datetime('now','localtime') where id = new.id;
         end;
 
-insert into debt (plan_id, name, amt) values (1, 'CC', 1000);
-insert into debt (plan_id, name, amt) values (1, 'Mortgage', 200000);
 
 
 
@@ -44,4 +42,3 @@ create trigger debt_adjtr after update on debt_adj begin
         update debt_adj set updated = datetime('now','localtime') where id = new.id;
 	end;
 
-insert into debt_adj (debt_id, name, start_dt, amt) values (1,'Test Raise', datetime('now','localtime','start of month','+2 months'), 250); 

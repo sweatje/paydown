@@ -11,15 +11,19 @@ class TestDebtClass extends PHPUnit_Framework_TestCase {
 	protected $db;
 	protected $debt;
 	function setup() {
+		$this->teardown();
 		$this->db = new PDO('sqlite:'.$this->dbname);
 		`sqlite3 $this->dbname < sql/plan_ddl.sql`;
 		`sqlite3 $this->dbname < sql/debt_ddl.sql`;
 		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+		$this->db->exec("insert into dplan (name) values ('Test Plan')");
+		$this->db->exec("insert into debt (plan_id, name, amt) values (1, 'CC', 1000)");
+		$this->db->exec("insert into debt (plan_id, name, amt) values (1, 'Mortgage', 200000)"); 
 		$this->debt = new Debt($this->db);
 	}
 	function teardown() {
-		unlink($this->dbname);
+		if (file_exists($this->dbname)) unlink($this->dbname);
 	}
 	function testGetByIdMethodExists() {
 		$this->assertTrue(method_exists('debt','getbyid'));
